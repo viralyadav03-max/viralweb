@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viral Yadav — Web Developer & UI/UX Designer</title>
+  <meta name="description" content="Portfolio of Viral Yadav. Websites that turn visitors into clients. Web development and UI/UX design.">
+  
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Anton&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Preloader Screen -->
+  <div id="loader" class="loader">
+    <div class="loader-content">
+      <div class="spinner-ring">
+        <svg viewBox="0 0 100 100">
+          <circle class="bg" cx="50" cy="50" r="45" />
+          <circle class="progress" id="progress-circle" cx="50" cy="50" r="45" />
+        </svg>
+        <span id="loader-percent" class="loader-percent">0%</span>
+      </div>
+      <p class="loader-text">Loading Experience</p>
+    </div>
+  </div>
+
+  <!-- Background Canvas Container for Frame Animation -->
+  <div id="canvas-container" class="canvas-container">
+    <canvas id="frame-canvas"></canvas>
+    <div class="canvas-overlay-gradient"></div>
+  </div>
+
+  <!-- Global Header Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="brand-logo">
+        <span>VIRALWEB</span>
+      </a>
+
+      <nav class="nav-pill-menu">
+        <a href="#about" class="nav-link active">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a href="https://www.linkedin.com/in/viral-yadav-1a582475/" target="_blank" rel="noopener noreferrer" class="btn-primary-pill">
+          <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.66 1.66 0 1 0-.01 3.32 1.66 1.66 0 0 0 .01-3.32Z"/>
+          </svg>
+          <span>LinkedIn</span>
+          <span class="btn-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Website Content -->
+  <main class="page-content">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      
+      <!-- Hero 3D Typography Layer -->
+      <div class="hero-bg-text-wrapper">
+        <div class="hero-title-container" aria-label="I AM VIRAL YADAV">
+          <div class="hero-word-block left-block">
+            <span class="hero-eyebrow-iam">I AM</span>
+            <h1 class="hero-title-word viral-word">VIRAL</h1>
+          </div>
+          <div class="hero-word-block right-block">
+            <h1 class="hero-title-word yadav-word">YADAV</h1>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Creative Tools Layer (Scattered around VIRAL YADAV) -->
+      <div class="hero-tools-scatter-layer" aria-hidden="true">
+        <!-- SVG Definitions for Gradients -->
+        <svg width="0" height="0" style="position:absolute;">
+          <defs>
+            <linearGradient id="canvaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00C4CC" />
+              <stop offset="100%" stop-color="#7D2AE8" />
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <!-- 1. Photoshop (Ps) -->
+        <div class="tool-scatter-badge badge-ps" title="Adobe Photoshop">
+          <div class="tool-inner adobe-ps">
+            <span class="adobe-letter">Ps</span>
+          </div>
+        </div>
+
+        <!-- 2. Premiere Pro (Pr) -->
+        <div class="tool-scatter-badge badge-pr" title="Adobe Premiere Pro">
+          <div class="tool-inner adobe-pr">
+            <span class="adobe-letter">Pr</span>
+          </div>
+        </div>
+
+        <!-- 3. After Effects (Ae) -->
+        <div class="tool-scatter-badge badge-ae" title="Adobe After Effects">
+          <div class="tool-inner adobe-ae">
+            <span class="adobe-letter">Ae</span>
+          </div>
+        </div>
+
+        <!-- 4. Canva -->
+        <div class="tool-scatter-badge badge-canva" title="Canva">
+          <div class="tool-inner tool-canva">
+            <img src="icon_canva_3d.png" alt="Canva" class="canva-3d-img">
+          </div>
+        </div>
+
+        <!-- 5. ChatGPT -->
+        <div class="tool-scatter-badge badge-chatgpt" title="ChatGPT">
+          <div class="tool-inner tool-chatgpt">
+            <svg viewBox="0 0 24 24" class="openai-svg" fill="#ffffff">
+              <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.08 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.493zm-9.66-4.26a4.47 4.47 0 0 1-.534-3.007l.142.083 4.78 2.758a.792.792 0 0 0 .784 0l5.835-3.369v2.333a.08.08 0 0 1-.033.063l-4.835 2.793a4.498 4.498 0 0 1-6.139-1.654zm-1.638-9.97a4.477 4.477 0 0 1 2.342-1.967v.166l.001 5.516a.79.79 0 0 0 .392.682l5.835 3.369-2.02 1.168a.078.078 0 0 1-.072 0l-4.835-2.792a4.498 4.498 0 0 1-1.643-6.142zm16.597 3.84-5.835-3.37 2.02-1.168a.078.078 0 0 1 .072 0l4.835 2.792a4.498 4.498 0 0 1 1.644 6.142 4.476 4.476 0 0 1-2.343 1.967v-.166l-.001-5.516a.79.79 0 0 0-.392-.682zm2.012-3.024-.141-.083-4.78-2.758a.792.792 0 0 0-.784 0L9.03 9.554V7.221a.08.08 0 0 1 .033-.063l4.835-2.793a4.498 4.498 0 0 1 6.139 1.654 4.47 4.47 0 0 1 .534 3.007zM8.706 13.068l-2.02-1.168a.07.07 0 0 1-.038-.052V6.265a4.504 4.504 0 0 1 7.37-3.453l-.142.08-4.778 2.758a.795.795 0 0 0-.392.682v6.736zm1.066-1.745 2.628-1.517 2.628 1.517v3.035l-2.628 1.517-2.628-1.517z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 6. Claude -->
+        <div class="tool-scatter-badge badge-claude" title="Claude AI">
+          <div class="tool-inner tool-claude">
+            <svg viewBox="0 0 24 24" class="claude-icon-svg" fill="#ffffff">
+              <path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v6.172l4.364-4.364a1.5 1.5 0 1 1 2.122 2.122L15.622 11.8H21.8a1.5 1.5 0 1 1 0 3h-6.178l4.364 4.364a1.5 1.5 0 1 1-2.122 2.122L13.5 16.922V23.1a1.5 1.5 0 1 1-3 0v-6.178l-4.364 4.364a1.5 1.5 0 1 1-2.122-2.122L8.378 14.8H2.2a1.5 1.5 0 1 1 0-3h6.178L4.014 7.436a1.5 1.5 0 1 1 2.122-2.122L10.5 9.678V3.5A1.5 1.5 0 0 1 12 2z"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 7. Creative Tool -->
+        <div class="tool-scatter-badge badge-custom-tool" title="Creative Tool">
+          <div class="tool-inner tool-custom-tool">
+            <img src="icon_custom_tool.png" alt="Creative Tool" class="custom-tool-img">
+          </div>
+        </div>
+
+        <!-- 8. ElevenLabs -->
+        <div class="tool-scatter-badge badge-elevenlabs" title="ElevenLabs">
+          <div class="tool-inner tool-elevenlabs">
+            <div class="eleven-bars">
+              <span></span>
+              <span></span>
+            </div>
+            <span class="eleven-label">ElevenLabs</span>
+          </div>
+        </div>
+
+        <!-- 9. DaVinci Resolve -->
+        <div class="tool-scatter-badge badge-davinci" title="DaVinci Resolve">
+          <div class="tool-inner tool-davinci">
+            <svg viewBox="0 0 100 100" class="davinci-icon-svg">
+              <circle cx="50" cy="28" r="14" fill="#00d2ff"/>
+              <circle cx="32" cy="66" r="14" fill="#ff3366"/>
+              <circle cx="68" cy="66" r="14" fill="#ffcc00"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Bottom Content Grid -->
+      <div class="hero-content-grid">
+        <!-- Left Hero Column -->
+        <div class="hero-left-col">
+          <div class="badge-tag">
+            <span class="dot-pulse"></span>
+            <span>Video • Design • Motion • Marketing • Content</span>
+          </div>
+          <h2 class="hero-tagline">
+            I turn brand ideas<br>into visual experiences.
+          </h2>
+          <div class="hero-action-buttons">
+            <a href="https://www.linkedin.com/in/viral-yadav-1a582475/" target="_blank" rel="noopener noreferrer" class="btn-primary-pill">
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.66 1.66 0 1 0-.01 3.32 1.66 1.66 0 0 0 .01-3.32Z"/>
+              </svg>
+              <span>LinkedIn</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            <a href="#projects" class="btn-outline-pill">
+              <span>View My Work</span>
+              <span class="btn-arrow">↘</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Hero Floating Feature Card -->
+        <div class="hero-right-col">
+          <div class="glass-stat-card feature-card">
+            <div class="feature-card-inner">
+              <div class="feature-icon-wrapper">
+                <svg viewBox="0 0 24 24" fill="currentColor" class="feature-main-icon">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <div class="feature-meta">
+                <h4 class="feature-title">End-to-End Creative</h4>
+                <p class="feature-subtitle">From Concept To Execution</p>
+                <div class="feature-stars">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll down indicator -->
+      <div id="scroll-hint" class="scroll-hint">
+        <div class="mouse-icon">
+          <div class="wheel"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </section>
+
+    <!-- Infinite Marquee Ticker -->
+    <section class="marquee-ticker-section">
+      <div class="ticker-track">
+        <div class="ticker-content">
+          <span>7+ YEARS EXPERIENCE</span>
+          <span class="ticker-star">✦</span>
+          <span>GLOBAL CONTENT EXPERTISE</span>
+          <span class="ticker-star">✦</span>
+          <span>CREATOR ECONOMY</span>
+          <span class="ticker-star">✦</span>
+          <span>VISUAL COMMUNICATION</span>
+          <span class="ticker-star">✦</span>
+          <span>CONTENT STRATEGY</span>
+          <span class="ticker-star">✦</span>
+        </div>
+        <div class="ticker-content" aria-hidden="true">
+          <span>7+ YEARS EXPERIENCE</span>
+          <span class="ticker-star">✦</span>
+          <span>GLOBAL CONTENT EXPERTISE</span>
+          <span class="ticker-star">✦</span>
+          <span>CREATOR ECONOMY</span>
+          <span class="ticker-star">✦</span>
+          <span>VISUAL COMMUNICATION</span>
+          <span class="ticker-star">✦</span>
+          <span>CONTENT STRATEGY</span>
+          <span class="ticker-star">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section class="about-section" id="about">
+      <div class="section-container">
+        <div class="about-grid">
+          <!-- Left label -->
+          <div class="about-left-label">
+            <div class="section-badge-line">
+              <span class="dot-bullet"></span>
+              <span>About Me</span>
+              <div class="line-trail"></div>
+            </div>
+            <div class="about-image-wrapper">
+              <img src="about_me_photo_new.jpg" alt="Viral Yadav Portrait" class="about-image">
+            </div>
+          </div>
+
+          <!-- Right content -->
+          <div class="about-right-text">
+            <p class="about-description">
+              Over 7+ years in the creative industry, I’ve worked across brands, startups, and global teams, taking projects from the first idea to final execution. My work goes beyond video and design — I’ve developed AI-powered creative concepts, built visual campaigns, sourced and coordinated with influencers, and worked closely with creators to bring ideas to life.<br><br>I enjoy being an integral part of the process — understanding the objective, shaping the creative direction, finding the right people and tools, and making sure the final work delivers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Client / Partner Logo Cloud -->
+    <section class="client-logos-section">
+      <div class="section-container">
+        <div class="logos-grid">
+          <div class="logo-item"><img src="logo_growify.png" alt="Growify"></div>
+          <div class="logo-item"><img src="logo_nuna.png" alt="Nuna"></div>
+          <div class="logo-item"><img src="logo_secretescapes.png" alt="Secret Escapes"></div>
+          <div class="logo-item"><img src="logo_navisavi.png" alt="NaviSavi"></div>
+          <div class="logo-item"><img src="logo_travassa.png" alt="Travassa Holidays"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work / Projects Section -->
+    <section class="projects-section" id="projects">
+      <div class="section-container">
+        <div class="section-header-row">
+          <div class="section-badge-line">
+            <span class="dot-bullet"></span>
+            <span>PREVIOUS EXPERIENCE · NAVISAVI</span>
+          </div>
+          <h2 class="section-main-title">Four and a half years of turning ideas into campaigns, content &amp; systems at <span class="navisavi-inline-wrap"><img src="logo_navisavi_full.png" alt="NaviSavi" class="navisavi-headline-logo"></span></h2>
+        </div>
+
+        <!-- NaviSavi Experience Showcase (2-Column: Left Media with entrance animation, Right Head of Content Role) -->
+        <div class="experience-showcase-grid">
+          
+          <!-- Left Column: Company Showcase Image with Scroll Entrance Animation -->
+          <div class="experience-media-col scroll-reveal-up">
+            <div class="experience-media-card">
+              <img src="navisavi_showcase.png" alt="NaviSavi Travel App" class="experience-showcase-img">
+            </div>
+          </div>
+
+          <!-- Right Column: Role Title & Description -->
+          <div class="experience-content-col scroll-reveal-up">
+            <div class="experience-title-wrap">
+              <h3 class="experience-role-title">Head of Content <span class="role-parenthesis">(Previous Job)</span></h3>
+              <span class="experience-company-subtitle">Jan 2022 – September 2026</span>
+            </div>
+            <p class="experience-role-desc">
+              With NaviSavi, a U.S.-based travel-tech startup, I’ve gone far beyond a single creative role—working across video, editing, graphic design, motion, content, marketing, creator partnerships, and creative operations. I’ve curated and managed a global library of 250,000+ travel videos, developed campaigns and social content, created product videos, ads, banners, and launch assets, and helped shape how the brand communicates across platforms. I’ve worked with influencers and creators, coordinated with a global travel community, managed content workflows, and collaborated across product, marketing, and creative teams to take ideas from concept to execution. Whether it’s building a campaign, editing a story, designing a visual, creating motion, managing creators, or figuring out how to make an idea actually work—I’ve been the person making it happen.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Next Opportunity CTA Button (Centered) -->
+        <div class="next-opportunity-row scroll-reveal-up">
+          <a href="mailto:viral.yadav03@gmail.com" class="btn-primary-pill btn-opportunity">
+            <span class="dot-pulse"></span>
+            <span>Looking for my next creative opportunity</span>
+            <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- NaviSavi Vertical Video Carousel Gallery (Full-Bleed Viewport Flow) -->
+      <div class="navisavi-reels-gallery" id="navisaviReelsGallery">
+        <div class="reels-flow-viewport" id="reelsFlowViewport">
+          <div class="reels-flow-track" id="reelsFlowTrack">
+            
+            <!-- Video Reel 1 -->
+            <div class="reel-item" data-index="0">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/AD%204.mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 2 -->
+            <div class="reel-item" data-index="1">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Ad%20-05%20(2).mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 3 -->
+            <div class="reel-item" data-index="2">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Ad%201.mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 4 -->
+            <div class="reel-item" data-index="3">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Ad%202.zip.mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 5 -->
+            <div class="reel-item" data-index="4">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Ad%203%20with%20Subtitles%20(2).mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 6 -->
+            <div class="reel-item" data-index="5">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Ad%203.mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 7 -->
+            <div class="reel-item" data-index="6">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Longer%20(1).mov" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 8 -->
+            <div class="reel-item" data-index="7">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Sally%20Version%20(1).MP4" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 9 -->
+            <div class="reel-item" data-index="8">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/Vertical.mp4" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 10 -->
+            <div class="reel-item" data-index="9">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/C2333_2.mp4" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+            <!-- Video Reel 11 -->
+            <div class="reel-item" data-index="10">
+              <div class="reel-inner">
+                <video class="reel-video-element" src="Reels/🇾🇪%20Yemen%20is%20unlike%20anywhere%20else%20on%20Earth.A%20land%20of%20ancient%20cities,%20dramatic%20mountains,%20vast%20d.mp4" playsinline muted loop autoplay preload="auto"></video>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Launch Scroll-Driven Case Study (Centered Layout Reference Match) -->
+    <section class="launch-showcase-section" id="launchShowcase">
+      <div class="launch-sticky-wrapper">
+        <div class="section-container launch-container centered-layout">
+          
+          <!-- Top Header: Centered Title + 2 Lines Small Subtitle (Exact Reference Match) -->
+          <div class="launch-header-center">
+            <h2 class="launch-bold-title">From Idea to Product Launch</h2>
+            <p class="launch-sub-copy">
+              Created product launch films for a highly optimized travel product, bringing the<br>
+              product to life across conferences, social media, and digital campaigns.
+            </p>
+          </div>
+
+          <!-- Center: 2 Overlapping Stacked Video Cards -->
+          <div class="launch-media-center">
+            <div class="launch-deck-viewport">
+              <div class="launch-deck-stage" id="launchDeckStage">
+                
+                <!-- Video Layer 1 (Front / Active Initially) -->
+                <div class="launch-card" data-step="0">
+                  <div class="launch-card-inner">
+                    <video class="launch-video" src="Product%20Launch/NaviSavi%20x%20Dataiera%20Discover,%20Plan,%20and%20Book%20%5B2026%20-%20Coming%20Soon%5D%20-%20NaviSavi%20(1080p,%20h264).mp4" playsinline muted loop autoplay preload="auto"></video>
+                  </div>
+                </div>
+
+                <!-- Video Layer 2 (Stacked Behind) -->
+                <div class="launch-card" data-step="1">
+                  <div class="launch-card-inner">
+                    <video class="launch-video" src="Product%20Launch/NaviSavi%20Travel%20Club%20with%20Subtitles%20(2).mov" playsinline muted loop autoplay preload="auto"></video>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Media Posters & Instagram Phone Carousel Section (Standalone Chapter) -->
+    <section class="posters-showcase-section" id="postersShowcase">
+      <div class="posters-sticky-wrapper">
+        <div class="posters-ambient-glow"></div>
+        
+        <!-- Section Header at Top -->
+        <div class="posters-header-wrap">
+          <div class="section-badge-line">
+            <span class="dot-bullet"></span>
+            <span>Social & Visual Storytelling</span>
+          </div>
+          <h2 class="posters-main-title">Not Just Video. I Build Visual Posters.</h2>
+          <p class="posters-sub-desc">
+            Crafting high-engagement social media campaigns, visual posters, and interactive brand assets that drive global reach.
+          </p>
+        </div>
+
+        <!-- Carousel Stage & Phone Viewing Window -->
+        <div class="posters-stage-container" id="postersStageContainer">
+          
+          <!-- Outer Scrolling Posters Conveyor (Continuous Right to Left Flow) -->
+          <div class="posters-conveyor-track" id="postersConveyorTrack">
+            <div class="poster-card-item" data-index="0">
+              <img src="Social%20Media/1.png" alt="Travel Creators Latvia" loading="lazy">
+            </div>
+            <div class="poster-card-item" data-index="1">
+              <img src="Social%20Media/2.png" alt="The Next Chapter NaviSavi" loading="lazy">
+            </div>
+            <div class="poster-card-item" data-index="2">
+              <img src="Social%20Media/3.png" alt="Travel Creators Germany" loading="lazy">
+            </div>
+            <div class="poster-card-item" data-index="3">
+              <img src="Social%20Media/4.png" alt="5500 Creators 200k Videos" loading="lazy">
+            </div>
+            <div class="poster-card-item" data-index="4">
+              <img src="Social%20Media/5.png" alt="Travel Content" loading="lazy">
+            </div>
+            <div class="poster-card-item" data-index="5">
+              <img src="Social%20Media/6.png" alt="Social Poster 6" loading="lazy">
+            </div>
+          </div>
+
+          <!-- Central Stationary iPhone Mockup with Real Instagram Feed UI -->
+          <div class="phone-mockup-wrapper" id="phoneMockupWrapper">
+            
+            <!-- Floating Social Reaction Emojis Behind Phone (Reference Image Matched) -->
+            <div class="emoji-burst-layer">
+              <!-- Left Scattered Reactions -->
+              <div class="react-bubble r-left-1 badge-smile"><span>🥰</span></div>
+              <div class="react-bubble r-left-2 badge-like"><svg viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.22 8.79 7 9.3 7 9.83v7.34C7 18.28 7.72 19 8.61 19H17c.75 0 1.41-.41 1.75-1.03l3.08-7.09z"/></svg></div>
+              <div class="react-bubble r-left-3 badge-love"><span>😍</span></div>
+              <div class="react-bubble r-left-4 badge-like-sm"><svg viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.22 8.79 7 9.3 7 9.83v7.34C7 18.28 7.72 19 8.61 19H17c.75 0 1.41-.41 1.75-1.03l3.08-7.09z"/></svg></div>
+              <div class="react-bubble r-left-5 badge-laugh"><span>😆</span></div>
+              <div class="react-bubble r-left-6 badge-heart"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+              <div class="react-bubble r-left-7 badge-heart-sm"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+
+              <!-- Center/Top Reactions Behind Phone -->
+              <div class="react-bubble r-center-1 badge-heart"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+              <div class="react-bubble r-center-2 badge-like"><svg viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.22 8.79 7 9.3 7 9.83v7.34C7 18.28 7.72 19 8.61 19H17c.75 0 1.41-.41 1.75-1.03l3.08-7.09z"/></svg></div>
+
+              <!-- Right Scattered Reactions -->
+              <div class="react-bubble r-right-1 badge-heart"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+              <div class="react-bubble r-right-2 badge-like-sm"><svg viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.22 8.79 7 9.3 7 9.83v7.34C7 18.28 7.72 19 8.61 19H17c.75 0 1.41-.41 1.75-1.03l3.08-7.09z"/></svg></div>
+              <div class="react-bubble r-right-3 badge-laugh"><span>😆</span></div>
+              <div class="react-bubble r-right-4 badge-heart-sm"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+              <div class="react-bubble r-right-5 badge-love"><span>😍</span></div>
+              <div class="react-bubble r-right-6 badge-like"><svg viewBox="0 0 24 24"><path d="M2 20h2c.55 0 1-.45 1-1v-9c0-.55-.45-1-1-1H2v11zm19.83-7.12c.11-.25.17-.52.17-.8V11c0-1.1-.9-2-2-2h-5.5l.92-4.65c.05-.22.02-.46-.08-.66-.23-.45-.52-.86-.88-1.22L14 2 7.59 8.41C7.22 8.79 7 9.3 7 9.83v7.34C7 18.28 7.72 19 8.61 19H17c.75 0 1.41-.41 1.75-1.03l3.08-7.09z"/></svg></div>
+              <div class="react-bubble r-right-7 badge-heart"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+            </div>
+
+            <div class="iphone-bezel">
+              <!-- Dynamic Island / Speaker Pill -->
+              <div class="iphone-dynamic-island">
+                <div class="island-camera"></div>
+              </div>
+
+              <!-- Instagram UI Screen -->
+              <div class="insta-screen">
+                
+                <!-- Story Circles Row -->
+                <div class="insta-stories-row">
+                  <div class="story-circle your-story">
+                    <div class="story-ring active-ring"><img class="story-avatar-img" src="viral_avatar.jpg" alt="Your Story"></div>
+                    <span class="story-label">Your Story</span>
+                  </div>
+                  <div class="story-circle">
+                    <div class="story-ring active-ring"><img src="Social%20Media/1.png" alt="Bali"></div>
+                    <span class="story-label">Bali</span>
+                  </div>
+                  <div class="story-circle">
+                    <div class="story-ring active-ring"><img src="Social%20Media/2.png" alt="Switzerland"></div>
+                    <span class="story-label">Switzerland</span>
+                  </div>
+                  <div class="story-circle">
+                    <div class="story-ring active-ring"><img src="Social%20Media/3.png" alt="Iceland"></div>
+                    <span class="story-label">Iceland</span>
+                  </div>
+                  <div class="story-circle">
+                    <div class="story-ring active-ring"><img src="Social%20Media/4.png" alt="Santorini"></div>
+                    <span class="story-label">Santorini</span>
+                  </div>
+                </div>
+
+                <!-- Feed Post Header -->
+                <div class="insta-post-header">
+                  <div class="insta-user-info">
+                    <div class="insta-user-avatar">
+                      <img src="viral_avatar.jpg" alt="Viral Web">
+                    </div>
+                    <div class="insta-user-name">
+                      <span>Viral Web</span>
+                      <svg class="verified-badge" viewBox="0 0 24 24" fill="#0095f6"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                    </div>
+                  </div>
+                  <div class="insta-more-btn">•••</div>
+                </div>
+
+                <!-- Active Center Post Display Area -->
+                <div class="insta-post-media" id="instaPostMedia">
+                  <img id="instaActiveImage" class="insta-active-img" src="Social%20Media/3.png" alt="Instagram Post">
+                </div>
+
+                <!-- Engagement Actions & Likes Bar -->
+                <div class="insta-action-bar">
+                  <div class="action-left">
+                    <span class="action-icon heart-icon">❤️ <b class="metric-num">99K</b></span>
+                    <span class="action-icon comment-icon">💬 <b class="metric-num">2K</b></span>
+                    <span class="action-icon share-icon">↗ <b class="metric-num">148K</b></span>
+                  </div>
+                  <div class="action-right">
+                    <span class="action-icon bookmark-icon">🔖</span>
+                  </div>
+                </div>
+
+                <!-- Caption & Timestamp -->
+                <div class="insta-caption-box">
+                  <p><strong>Viral Web</strong> Explore more. Wander often. 🌴</p>
+                  <span class="insta-time">1 day ago</span>
+                </div>
+
+                <!-- Bottom Tab Navigation Bar -->
+                <div class="insta-bottom-nav">
+                  <svg class="nav-icon active" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                  <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/></svg>
+                  <div class="nav-profile-dot"><img src="viral_avatar.jpg" alt="Profile"></div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Details / Philosophy Section -->
+    <section class="philosophy-section">
+      <div class="section-container">
+        <h2 class="philosophy-title">
+          I strive for pay attention<br>to the smallest details
+        </h2>
+        <p class="philosophy-subtitle">
+          Every pixel, animation curve, and interaction is engineered with absolute intention to create memorable digital experiences that elevate brand prestige.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services & Capabilities Section -->
+    <section class="services-section" id="services">
+      <div class="section-container">
+        <div class="section-badge-line">
+          <span class="dot-bullet"></span>
+          <span>Services</span>
+        </div>
+        <h2 class="section-main-title">What I Bring To The Table</h2>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-number">01 — Video & Motion</div>
+            <h3>Video Production & Editing</h3>
+            <p>Social-first videos, product films, brand stories, reels, and motion content crafted to capture attention and bring ideas to life.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">02 — Graphics & Visual Design</div>
+            <h3>Graphic & Visual Design</h3>
+            <p>From Instagram posts and campaign creatives to pitch decks, presentations, banners, and branded visual systems — I turn ideas into compelling visuals.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-number">03 — Creators & Community</div>
+            <h3>Influencer & Community Management</h3>
+            <p>Building creator relationships, managing influencer campaigns, coordinating collaborations, and growing communities through authentic, engaging content.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Creator & Artist Profile Section (Exact Reference Image Match) -->
+    <section class="artist-showcase-section" id="creator">
+      <div class="artist-ambient-glow"></div>
+      <div class="section-container artist-container">
+        
+        <!-- Left Side: Editorial Glassmorphic Story Card -->
+        <div class="artist-card-left">
+          <h2 class="artist-headline">Not just a visual artist.</h2>
+          <div class="artist-sub-stat">
+            <span class="highlight-orange">100K+ followers.</span> Years of creating. And a deep understanding of the creator economy.
+          </div>
+          <div class="artist-paragraphs">
+            <p>I’ve been on both sides of the camera — creating content and building campaigns around creators.</p>
+            <p>I understand what makes people stop, watch, engage and trust. And I understand what brands need from that attention.</p>
+            <p>From running influencer campaigns at my previous company to building my own presence as a lifestyle &amp; travel creator, I’ve experienced the creator economy from the inside.</p>
+            <p class="emphasis-p">So when I work for a brand, I’m not just thinking like a designer.<br>I’m thinking like a creator, a marketer and an audience.</p>
+          </div>
+
+          <!-- Creator Action & Contact CTAs -->
+          <div class="artist-cta-row">
+            <a href="https://www.instagram.com/viral_rao/?hl=en" target="_blank" rel="noopener noreferrer" class="btn-primary-pill">
+              <svg class="btn-ig-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              <span>Visit Instagram Profile</span>
+              <span class="btn-arrow">↗</span>
+            </a>
+            
+            <a href="mailto:viral.yadav03@gmail.com" class="btn-email-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>viral.yadav03@gmail.com</span>
+            </a>
+
+            <a href="#hero" class="btn-outline-pill">
+              <span>Back to Top</span>
+              <span class="btn-arrow">↑</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Instagram Profile iPhone Mockup (Exact Reference Match) -->
+        <div class="artist-phone-col">
+          <div class="profile-iphone-bezel">
+            
+            <!-- Dynamic Island -->
+            <div class="profile-dynamic-island">
+              <div class="island-camera"></div>
+            </div>
+
+            <!-- Authentic Instagram Profile Screen Image -->
+            <div class="profile-screen-media">
+              <img src="instagram_profile_real.png" alt="Viral Rao Instagram Profile" class="profile-real-screenshot">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Footer Bottom Row -->
+    <footer class="site-footer" id="contact">
+      <div class="section-container">
+        <div class="footer-bottom-row">
+          <div class="footer-brand">
+            <span>VIRALWEB</span>
+            <p>© 2026 Viral Yadav. All rights reserved.</p>
+          </div>
+          <div class="footer-socials">
+            <a href="#" target="_blank" rel="noopener">Twitter / X</a>
+            <a href="https://www.linkedin.com/in/viral-yadav-1a582475/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
