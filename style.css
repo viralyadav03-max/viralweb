@@ -338,6 +338,11 @@ body {
   margin: 0 auto;
 }
 
+/* Mobile Hero Stage (Hidden on Desktop & Tablet) */
+.mobile-hero-stage {
+  display: none;
+}
+
 /* Accessible hidden DOM layer (Canvas renders the 3D depth layer) */
 .hero-bg-text-wrapper {
   position: absolute;
@@ -2530,10 +2535,12 @@ body {
 
 /* --- Mobile Devices & Small Tablets (<= 768px) --- */
 @media (max-width: 768px) {
+  .canvas-container {
+    display: none !important;
+  }
+
   .canvas-overlay-gradient {
-    background: 
-      linear-gradient(180deg, rgba(6, 6, 7, 0.05) 0%, rgba(6, 6, 7, 0.25) 28%, rgba(6, 6, 7, 0.88) 45%, rgba(6, 6, 7, 0.98) 58%, #060607 100%),
-      radial-gradient(ellipse at 50% 22%, rgba(255, 90, 31, 0.15) 0%, transparent 60%);
+    display: none;
   }
 
   .site-header {
@@ -2562,91 +2569,180 @@ body {
   
   .hero-section {
     min-height: auto;
-    padding: 70px 16px 40px;
+    padding: 68px 16px 36px;
     justify-content: flex-start;
     overflow: visible;
+    position: relative;
   }
 
+  /* Mobile Hero Stage (Exact Reference Match: I AM VIRAL [FACE] YADAV) */
+  .mobile-hero-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 250px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    overflow: visible;
+    user-select: none;
+    background: radial-gradient(ellipse at 50% 42%, rgba(225, 55, 18, 0.42) 0%, rgba(120, 20, 0, 0.22) 52%, transparent 76%);
+  }
+
+  .mobile-hero-face-center {
+    position: relative;
+    z-index: 4;
+    width: 155px;
+    height: 215px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 -14px;
+  }
+
+  .mobile-hero-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    filter: drop-shadow(0 14px 32px rgba(0, 0, 0, 0.95));
+    mask-image: radial-gradient(ellipse at 50% 42%, black 62%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 42%, black 62%, transparent 100%);
+  }
+
+  .mobile-hero-text-side {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-left-side {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .mobile-right-side {
+    align-items: flex-start;
+    text-align: left;
+    padding-top: 18px;
+  }
+
+  .mobile-iam-badge {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+    margin-bottom: -2px;
+  }
+
+  .mobile-hero-word {
+    font-family: var(--font-display);
+    font-size: clamp(2.9rem, 11.5vw, 4.4rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.5px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.95);
+  }
+
+  /* Floating Tools Scatter Layer in Mobile Header */
   .hero-tools-scatter-layer {
-    height: 46vh;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    height: 255px;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  .tool-scatter-badge {
+    opacity: 1 !important;
+    pointer-events: auto;
   }
 
   .tool-inner {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
   }
   .adobe-ps, .adobe-pr, .adobe-ae {
-    font-size: 18px;
+    font-size: 17px;
   }
-  .canva-3d-img, .custom-tool-img, .chatgpt-icon-svg, .claude-icon-svg, .davinci-icon-svg {
+  .canva-3d-img, .custom-tool-img, .openai-svg, .claude-icon-svg, .davinci-icon-svg {
     width: 22px;
     height: 22px;
   }
   .eleven-bars span {
     width: 2.5px;
-    height: 12px;
+    height: 11px;
   }
   .eleven-label {
-    font-size: 6.5px;
+    font-size: 6px;
   }
 
-  /* Compact tool scatter positions around face in upper viewport */
-  .badge-ps { top: 13%; left: 4%; }
-  .badge-pr { top: 32%; left: 5%; }
-  .badge-ae { top: 14%; left: 25%; }
-  .badge-canva { top: 34%; left: 24%; }
-  .badge-chatgpt { top: 12%; left: 47%; }
-  .badge-claude { top: 14%; right: 25%; left: auto; }
-  .badge-custom-tool { top: 13%; right: 4%; left: auto; }
-  .badge-elevenlabs { top: 32%; right: 22%; left: auto; }
-  .badge-davinci { top: 35%; right: 5%; left: auto; }
+  /* Exact positions matching mobile reference composition */
+  .badge-ps { top: 6%; left: 1%; --badge-rot: rotate(-8deg); }
+  .badge-ae { top: 4%; left: 24%; --badge-rot: rotate(7deg); }
+  .badge-chatgpt { top: 38%; left: 34%; --badge-rot: rotate(-9deg); }
+  .badge-canva { top: 74%; left: 22%; --badge-rot: rotate(-6deg); }
+  .badge-pr { top: 68%; left: 3%; --badge-rot: rotate(-5deg); }
+  .badge-claude { top: 6%; right: 28%; left: auto; --badge-rot: rotate(10deg); }
+  .badge-custom-tool { top: 8%; right: 3%; left: auto; --badge-rot: rotate(-5deg); }
+  .badge-elevenlabs { top: 68%; right: 34%; left: auto; --badge-rot: rotate(5deg); }
+  .badge-davinci { top: 76%; right: 17%; left: auto; --badge-rot: rotate(-6deg); }
 
-  /* Separate lower content section below upper image & logos with generous spacing */
+  /* Lower Content Section (Placed below header composition with generous space) */
   .hero-content-grid {
-    margin-top: 48vh;
-    padding-top: 15px;
+    margin-top: 24px;
+    padding-top: 0;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     position: relative;
     z-index: 10;
   }
 
-  .hero-tagline {
-    font-size: clamp(2rem, 7vw, 2.7rem);
-    line-height: 1.18;
-    margin: 14px 0 22px;
-  }
-
   .badge-tag {
     display: inline-flex;
-    max-width: 100%;
-    padding: 8px 16px;
-    font-size: 12px;
-    line-height: 1.4;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    font-size: 12.5px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
   }
 
-  .hero-title {
-    font-size: clamp(2.4rem, 8vw, 3.6rem);
-    letter-spacing: -1px;
+  .hero-tagline {
+    font-size: clamp(2.3rem, 7.8vw, 3.2rem);
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.6px;
+    margin: 16px 0 24px;
+    color: #ffffff;
   }
 
-  .hero-subtitle {
-    font-size: 16px;
-    line-height: 1.6;
-  }
-  
   .hero-action-buttons {
+    display: flex;
     flex-direction: column;
-    align-items: stretch;
-    width: 100%;
     gap: 12px;
+    width: 100%;
   }
 
   .hero-action-buttons .btn-primary-pill,
   .hero-action-buttons .btn-outline-pill {
     width: 100%;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
     justify-content: center;
+    border-radius: 9999px;
   }
 
   .hero-stats-row {
@@ -2892,12 +2988,41 @@ body {
 
 /* --- Ultra Compact Mobile Phones (<= 380px) --- */
 @media (max-width: 380px) {
+  .mobile-hero-stage {
+    height: 220px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+
+  .mobile-hero-face-center {
+    width: 130px;
+    height: 185px;
+    margin: 0 -10px;
+  }
+
+  .mobile-hero-word {
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+  }
+
   .hero-tools-scatter-layer {
-    height: 44vh;
+    top: 65px;
+    height: 220px;
+  }
+
+  .tool-inner {
+    width: 32px;
+    height: 32px;
+  }
+  .adobe-ps, .adobe-pr, .adobe-ae {
+    font-size: 15px;
+  }
+  .canva-3d-img, .custom-tool-img, .openai-svg, .claude-icon-svg, .davinci-icon-svg {
+    width: 18px;
+    height: 18px;
   }
 
   .hero-content-grid {
-    margin-top: 48vh;
+    margin-top: 16px;
   }
 
   .hero-portrait-frame {
