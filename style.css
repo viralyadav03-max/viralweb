@@ -2718,6 +2718,41 @@ body {
   .badge-ae { top: 55%; right: 7%; left: auto; --badge-rot: rotate(6deg); }
   .badge-custom-tool { top: 74%; right: 7%; left: auto; --badge-rot: rotate(-5deg); }
 
+  /* Mobile Asana Icon Animation Matching Existing Floating Badges */
+  @keyframes tossAsana {
+    0% {
+      opacity: 0;
+      transform: translate(-75vw, 15vh) rotate(-26deg) scale(0.65);
+    }
+    65% {
+      opacity: 1;
+      transform: translate(6px, -4px) rotate(-8deg) scale(1.04);
+    }
+    85% {
+      transform: translate(-2px, 2px) rotate(-5deg) scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(-6deg) scale(1);
+    }
+  }
+
+  @keyframes asanaFloat {
+    0% {
+      transform: translateY(0) rotate(-6deg);
+    }
+    100% {
+      transform: translateY(-8px) rotate(-6deg);
+    }
+  }
+
+  .mobile-hero-floating-tools .badge-asana,
+  .hero-tools-ready .badge-asana {
+    animation: 
+      tossAsana 1.25s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both,
+      asanaFloat 6s ease-in-out 1.85s infinite alternate;
+  }
+
   /* Lower Content Section */
   .hero-content-grid {
     margin-top: 20px;
@@ -3032,7 +3067,7 @@ body {
   .adobe-ps, .adobe-pr, .adobe-ae {
     font-size: 14px;
   }
-  .canva-3d-img, .custom-tool-img, .openai-svg, .claude-icon-svg, .davinci-icon-svg {
+  .canva-3d-img, .custom-tool-img, .openai-svg, .claude-icon-svg, .davinci-icon-svg, .asana-svg {
     width: 18px;
     height: 18px;
   }

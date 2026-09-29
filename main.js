@@ -288,7 +288,7 @@
     const items = Array.from(document.querySelectorAll('.reel-item'));
     if (!viewport || items.length === 0) return;
 
-    const count = items.length; // 9
+    const count = items.length; // 11
     let currentX = 0;
     let baseSpeed = 0.85; // Slow, cinematic drift from left to right
     let targetSpeed = baseSpeed;
@@ -296,10 +296,11 @@
     let isHovered = false;
     let isDragging = false;
     let startX = 0;
+    let startY = 0;
     let lastX = 0;
     let dragVelocity = 0;
+    let isTouchAction = false;
     let isVisible = true;
-    let activePlayingVideo = null;
     let resumeTimeout = null;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -309,11 +310,15 @@
       currentSpeed = 0;
     }
 
+    function checkIsMobile() {
+      return window.innerWidth <= 768;
+    }
+
     function getCardSpacing() {
       const winW = window.innerWidth;
-      if (winW < 600) {
+      if (winW <= 768) {
         return 190;
-      } else if (winW < 1024) {
+      } else if (winW <= 1024) {
         return 235;
       } else {
         return Math.max(275, Math.ceil((winW + 600) / count));
@@ -376,19 +381,23 @@
       });
     }
 
-    // Hover Event Listeners (Pauses gallery movement on hover)
+    // Hover Event Listeners (Pauses gallery movement on hover on desktop/tablet only)
     items.forEach(item => {
       item.addEventListener('mouseenter', () => {
-        isHovered = true;
-        item.classList.add('is-hovered');
+        if (!checkIsMobile()) {
+          isHovered = true;
+          item.classList.add('is-hovered');
+        }
       });
 
       item.addEventListener('mouseleave', () => {
-        isHovered = false;
-        item.classList.remove('is-hovered');
+        if (!checkIsMobile()) {
+          isHovered = false;
+          item.classList.remove('is-hovered');
+        }
       });
 
-      // Mobile Touch Tap to toggle
+      // Tap / Click to toggle video audio or play state
       item.addEventListener('click', () => {
         if (isDragging) return;
         const video = item.querySelector('.reel-video-element');
@@ -406,7 +415,9 @@
     function onPointerDown(e) {
       if (e.button !== undefined && e.button !== 0) return;
       isDragging = true;
+      isTouchAction = !!(e.touches && e.touches.length > 0);
       startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      startY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
       lastX = startX;
       dragVelocity = 0;
       if (resumeTimeout) clearTimeout(resumeTimeout);
@@ -415,6 +426,18 @@
     function onPointerMove(e) {
       if (!isDragging) return;
       const clientX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
+      const clientY = e.clientY || (e.touches && e.touches[0].clientY) || 0;
+
+      // On mobile touch devices, if user is scrolling vertically down the page, don't trap the gesture
+      if (isTouchAction && checkIsMobile()) {
+        const diffY = Math.abs(clientY - startY);
+        const diffX = Math.abs(clientX - startX);
+        if (diffY > 15 && diffY > diffX * 1.5) {
+          isDragging = false;
+          return;
+        }
+      }
+
       const deltaX = clientX - lastX;
       lastX = clientX;
 
@@ -424,17 +447,19 @@
     }
 
     function onPointerUp() {
-      if (!isDragging) return;
       isDragging = false;
-      
-      currentSpeed = dragVelocity * 0.5;
+
+      const isMobile = checkIsMobile();
+      currentSpeed = dragVelocity * 0.4;
 
       if (resumeTimeout) clearTimeout(resumeTimeout);
       resumeTimeout = setTimeout(() => {
-        if (!prefersReducedMotion) {
+        if (isMobile) {
+          targetSpeed = 0.85; // Continuous sliding from left to right on mobile
+        } else if (!prefersReducedMotion) {
           targetSpeed = baseSpeed;
         }
-      }, 1200);
+      }, isMobile ? 300 : 1200);
     }
 
     viewport.addEventListener('mousedown', onPointerDown);
@@ -444,19 +469,38 @@
     viewport.addEventListener('touchstart', onPointerDown, { passive: true });
     window.addEventListener('touchmove', onPointerMove, { passive: true });
     window.addEventListener('touchend', onPointerUp);
+    window.addEventListener('touchcancel', onPointerUp);
 
     // Animation Render Loop
     function animationLoop() {
-      if (isVisible) {
-        if (isHovered || isDragging) {
+      const isMobile = checkIsMobile();
+      // On mobile, always run the auto-sliding loop continuously without waiting for IntersectionObserver
+      if (isVisible || isMobile) {
+        // On mobile, hovering does not pause the carousel so continuous auto-sliding continues uninterrupted
+        const effectiveHovered = isMobile ? false : isHovered;
+
+        if (effectiveHovered || isDragging) {
           currentSpeed += (0 - currentSpeed) * 0.14;
         } else {
-          const speedTarget = prefersReducedMotion ? 0 : baseSpeed;
+          // On mobile, auto-slides continuously horizontally from left to right
+          const speedTarget = isMobile ? 0.85 : (prefersReducedMotion ? 0 : baseSpeed);
           currentSpeed += (speedTarget - currentSpeed) * 0.05;
         }
 
         if (Math.abs(currentSpeed) > 0.001) {
           currentX += currentSpeed;
+
+          // Normalize currentX within [0, totalWidth) for infinite seamless looping
+          const spacing = getCardSpacing();
+          const totalWidth = count * spacing;
+          if (totalWidth > 0) {
+            if (currentX >= totalWidth) {
+              currentX %= totalWidth;
+            } else if (currentX < 0) {
+              currentX = (currentX % totalWidth) + totalWidth;
+            }
+          }
+
           renderGallery();
         }
       }
@@ -475,7 +519,7 @@
             pauseAllVideos();
           }
         });
-      }, { threshold: 0.05 });
+      }, { threshold: 0.01 });
 
       visibilityObserver.observe(viewport);
     } else {
