@@ -1171,12 +1171,12 @@ body {
 .about-right-text {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .about-description {
-  font-size: clamp(1.02rem, 1.35vw, 1.25rem);
-  line-height: 1.62;
+  font-size: clamp(1.12rem, 1.55vw, 1.42rem);
+  line-height: 1.68;
   color: var(--text-cream);
   font-weight: 400;
 }
