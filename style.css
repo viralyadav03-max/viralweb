@@ -803,7 +803,7 @@ body {
 /* Hero Content Grid (Left Subtitles & Right Stat Card) */
 .hero-content-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: minmax(0, 1.4fr) auto;
   gap: 40px;
   align-items: flex-end;
   margin-top: auto;
@@ -849,11 +849,16 @@ body {
 
 .hero-tagline {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+  font-size: clamp(1.55rem, 2.25vw, 2.25rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.5px;
+  line-height: 1.22;
+  letter-spacing: -0.4px;
   color: var(--text-white);
+}
+
+.hero-tagline .tagline-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .hero-action-buttons {
@@ -2777,11 +2782,11 @@ body {
   }
 
   .hero-tagline {
-    font-size: clamp(2.3rem, 7.8vw, 3.2rem);
-    line-height: 1.12;
+    font-size: clamp(1.05rem, 4.3vw, 1.4rem);
+    line-height: 1.24;
     font-weight: 800;
-    letter-spacing: -0.6px;
-    margin: 16px 0 24px;
+    letter-spacing: -0.4px;
+    margin: 14px 0 20px;
     color: #ffffff;
   }
 
