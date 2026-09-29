@@ -1142,18 +1142,19 @@ body {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 60px;
+  grid-template-columns: 290px 1fr;
+  gap: 50px;
+  align-items: flex-start;
 }
 
 .about-left-label {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 .about-image-wrapper {
-  margin-top: 40px;
+  margin-top: 0;
   width: 100%;
   border-radius: var(--radius-card);
   overflow: hidden;
@@ -1170,12 +1171,12 @@ body {
 .about-right-text {
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 20px;
 }
 
 .about-description {
-  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
-  line-height: 1.5;
+  font-size: clamp(1.02rem, 1.35vw, 1.25rem);
+  line-height: 1.62;
   color: var(--text-cream);
   font-weight: 400;
 }
